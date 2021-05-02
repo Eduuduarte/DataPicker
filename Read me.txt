@@ -1,4 +1,3 @@
-meu primeiros passos no git
-modificando texto
-
-alteração feito no master
+Repositório para abrir calendário e escolher Data
+Recuperar valor da data escolhida
+Dia, mês e Anos
