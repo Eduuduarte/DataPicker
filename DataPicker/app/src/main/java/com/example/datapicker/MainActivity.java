@@ -20,14 +20,11 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     private Button button;
-    private TextView text;
     private int mDay, mMes, mAno;
     private TextView textDia;
     private TextView textMes;
     private TextView textAno;
-    private Button buttonTeste;
     private AutoCompleteTextView autoCompleteTextView;
-
 
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -42,15 +39,10 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         autoCompleteTextView.setText(arrayAdapter.getItem(0).toString(), false);
         autoCompleteTextView.setAdapter(arrayAdapter);
 
-
-        text = findViewById(R.id.textView);
-
         textDia = findViewById(R.id.textDia);
         textMes = findViewById(R.id.textMes);
         textAno = findViewById(R.id.textAno);
-        Calendario calendario = new Calendario();
 
-        buttonTeste = findViewById(R.id.buttonTeste);
         button = findViewById(R.id.buttonAbrir);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,13 +63,21 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         c.get(Calendar.DATE);
 
         String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+        String[] slipDate = currentDateString.split("de");
 
-        text.setText(currentDateString);
+        String [] spliDia = slipDate[0].split(",");
+
+        textDia.setText(spliDia[1].trim());
+        textMes.setText(slipDate[1].trim());
+        textAno.setText(slipDate[2].trim());
+
+
+        //text.setText(spliDia[1].trim() + "/" + slipDate[1].trim() + "/" + slipDate[2].trim());
         //Método para recuperar valores
-        pegarData(year, month, dayOfMonth);
+        //pegarData(year, month, dayOfMonth);
     }
 
-    private void pegarData(int ayear, int amonth, int adayOfMonth) {
+    /*private void pegarData(int ayear, int amonth, int adayOfMonth) {
         Calendar cal = Calendar.getInstance();
         int diaA = cal.get(Calendar.DATE);
         int mesA = cal.get(Calendar.MONTH);
@@ -91,5 +91,5 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         textDia.setText("Dia: " + teste);
         textMes.setText("Mês: " + (amonth + 1));
         textAno.setText("Ano: " + (ayear));
-    }
+    }*/
 }
